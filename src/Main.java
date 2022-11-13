@@ -5,7 +5,7 @@ import Transports.Transport;
 import Transports.Truck;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws WrongLoginException, WrongPasswordException {
 
         Car car1 = new Car("LADA", "2105", 0);
         Car car2 = new Car("LADA", "2105", 0);
@@ -42,18 +42,28 @@ public class Main {
         System.out.println(DriverBus);
 
         // Урок 5. Домашние задания
-        System.out.println("");
-        bus1.setType(Bus.Capacity.MEDIUM);
-        System.out.println("Автобус - " + bus1.getBrand() +
-                " " + bus1.getModel() +
-                ", вместимость пассажиров - " + bus1.printType());
-        truck1.setType(Truck.LoadCapacity.N2);
-        System.out.println("Грузовик - " + truck1.getBrand() +
-                " " + truck1.getModel() +
-                ", грузопадъемность - " + truck1.printType());
-        System.out.println("Грузовик - " + truck2.getBrand() +
-                " " + truck2.getModel() +
-                ", грузопадъемность - " + truck2.printType());
+//        System.out.println("");
+//        bus1.setType(Bus.Capacity.MEDIUM);
+//        System.out.println("Автобус - " + bus1.getBrand() +
+//                " " + bus1.getModel() +
+//                ", вместимость пассажиров - " + bus1.printType());
+//        truck1.setType(Truck.LoadCapacity.N2);
+//        System.out.println("Грузовик - " + truck1.getBrand() +
+//                " " + truck1.getModel() +
+//                ", грузопадъемность - " + truck1.printType());
+//        System.out.println("Грузовик - " + truck2.getBrand() +
+//                " " + truck2.getModel() +
+//                ", грузопадъемность - " + truck2.printType());
+
+        // Урок 6. Домашние задания
+        String login = "123123qweq_ваываыва";
+        try {
+            Data.loginPasswordCheck(login,
+                    "23",
+                    "23");
+        } catch (WrongLoginException|WrongPasswordException e) {
+            System.out.println(e.getMessage());
+        }
 
 
     }
