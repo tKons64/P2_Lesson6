@@ -2,6 +2,8 @@ package Transports;
 
 public class Bus extends Transport implements Competable{
 
+    private boolean diagnosticsPassed;
+
     public enum Capacity{
 
         EXTRA_SMALL("до 10 мест"),        //до 10 мест
@@ -60,4 +62,11 @@ public class Bus extends Transport implements Competable{
             return type.getComment();
         }
     }
+
+    @Override
+    public boolean checkDiagnostics() {
+        System.out.println("Автобусы не могут проходить диганостику!");
+        return true;
+    }
+
 }

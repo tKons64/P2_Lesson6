@@ -4,6 +4,7 @@ public abstract class Transport {
     private String brand;
     private String model;
     private float engineVolume;
+    private boolean diagnosticsPassed;
 
     public Transport(String brand, String model, int engineVolume) {
         this.setBrand(brand);
@@ -21,6 +22,10 @@ public abstract class Transport {
 
     void finishMoving() {
         System.out.printf("Авто %s %s закончило движение", getModel(), getBrand());
+    }
+
+    public boolean checkDiagnostics() {
+        return this.getDiagnosticsPassed();
     }
 
     public String getBrand() {
@@ -56,6 +61,15 @@ public abstract class Transport {
             this.engineVolume = engineVolume;
         }
     }
+
+    public boolean getDiagnosticsPassed() {
+        return diagnosticsPassed;
+    }
+
+    public void setDiagnosticsPassed(boolean diagnosticsPassed) {
+        this.diagnosticsPassed = diagnosticsPassed;
+    }
+
 
     @Override
     public String toString() {

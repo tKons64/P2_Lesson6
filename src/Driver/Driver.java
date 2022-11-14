@@ -15,18 +15,20 @@ public class Driver<T extends Transport>{
 
     private T transport;
 
-    public Driver(String fullName, int experienceYears, T transport) {
+    private final String VALID_DRIVING_LICENSE = "ABCDE";
+
+    public Driver(String fullName, int experienceYears, T transport) throws IllegalAccessException {
         this.fullName = fullName;
         this.experienceYears = experienceYears;
         this.transport = transport;
         if (Car.class.equals(transport.getClass())) {
-            this.categoryDrivingLicense = "B";
+            this.setCategoryDrivingLicense("B");
         } else if (Truck.class.equals(transport.getClass())) {
-            this.categoryDrivingLicense = "С";
+            this.setCategoryDrivingLicense("C");
         } else if (Bus.class.equals(transport.getClass())) {
-            this.categoryDrivingLicense = "D";
+            this.setCategoryDrivingLicense("D");
         } else {
-            this.categoryDrivingLicense = "?";
+            this.setCategoryDrivingLicense("?");
         }
 
     }
@@ -37,6 +39,19 @@ public class Driver<T extends Transport>{
 
     public String getDrivingLicense() {
         return categoryDrivingLicense;
+    }
+
+    public void setCategoryDrivingLicense(String categoryDrivingLicense) throws IllegalAccessException {
+        if (categoryDrivingLicense == null) {
+            throw new IllegalAccessException("Необходимо указать категорию прав!");
+        } else {
+            for (int i = 0; i < categoryDrivingLicense.length(); i++) {
+                if (!VALID_DRIVING_LICENSE.contains(String.valueOf(categoryDrivingLicense.charAt(i)))) {
+                    throw new IllegalAccessException("Указанна не верная категория прав!");
+                }
+            }
+        }
+        this.categoryDrivingLicense = categoryDrivingLicense;
     }
 
     public int getExperience() {

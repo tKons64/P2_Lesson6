@@ -5,7 +5,7 @@ import Transports.Transport;
 import Transports.Truck;
 
 public class Main {
-    public static void main(String[] args) throws WrongLoginException, WrongPasswordException {
+    public static void main(String[] args) throws WrongLoginException, WrongPasswordException, IllegalAccessException {
 
         Car car1 = new Car("LADA", "2105", 0);
         Car car2 = new Car("LADA", "2105", 0);
@@ -56,15 +56,46 @@ public class Main {
 //                ", грузопадъемность - " + truck2.printType());
 
         // Урок 6. Домашние задания
-        String login = "123123qweq_ваываыва";
+        // Домашнее задание №1
+        System.out.println("");
+        System.out.println("Домашнее задание №1. Урок 6");
+        String login = "123123qweq_";
         try {
             Data.loginPasswordCheck(login,
-                    "23",
+                    "233",
                     "23");
         } catch (WrongLoginException|WrongPasswordException e) {
             System.out.println(e.getMessage());
         }
 
+        // Домашнее задание №2
+        System.out.println("");
+        System.out.println("Домашнее задание №2. Урок 6");
+        car2.setDiagnosticsPassed(true);
+        car4.setDiagnosticsPassed(true);
+        truck1.setDiagnosticsPassed(true);
+        truck3.setDiagnosticsPassed(true);
 
+        checkTransportMaintenance(
+                car1, car2, car3, car4,
+                truck1, truck2, truck3, truck4,
+                bus1, bus2, bus3, bus4
+        );
+    }
+
+    public static void checkTransportMaintenance(Transport...transports) {
+        int count = 0;
+        for (Transport transport: transports) {
+            if (!transport.checkDiagnostics()) {
+                try {
+                    throw new RuntimeException("Автомомбиль " + transport.getBrand() + " " + transport.getModel() + " не прошел диагностику!");
+                } catch (RuntimeException e) {
+                    System.out.println(e.getMessage());
+                }
+            } else {
+                count++;
+            }
+        }
+        System.out.println("Диагностику прошли " + count + " из " + transports.length + " автомобилей");
     }
 }

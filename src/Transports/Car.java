@@ -45,4 +45,9 @@ public class Car extends Transport implements Competable{
     public int maxSpeed() {
         return 150;
     }
+
+    @Override
+    public boolean checkDiagnostics() {
+        return this.getDiagnosticsPassed();
+    }
 }

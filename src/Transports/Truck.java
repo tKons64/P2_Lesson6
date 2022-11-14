@@ -43,6 +43,11 @@ public class Truck extends Transport implements Competable {
         return 120;
     }
 
+    @Override
+    public boolean checkDiagnostics() {
+        return this.getDiagnosticsPassed();
+    }
+
     public LoadCapacity getType() {
         return type;
     }

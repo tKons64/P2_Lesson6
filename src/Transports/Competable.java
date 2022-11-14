@@ -7,4 +7,5 @@ public interface Competable {
     int bestLapTime();
 
     int maxSpeed();
+
 }
